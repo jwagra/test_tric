@@ -12,6 +12,10 @@ class State(DB.Model):
     state_datetime = DB.Column(DB.DateTime, nullable=False)
     info = DB.Column(DB.String())
 
+    __table_args__ = (
+        DB.Index('ix_service_type_dt', 'service_name', 'state_type', 'state_datetime'),
+    )
+
     def __repr__(self) -> str:
         return f'<State: {self.service_name}-{self.id}>'
 
